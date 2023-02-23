@@ -1,4 +1,9 @@
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix';
+
+// Описаний в документації
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 // const axios = require('axios/dist/node/axios.cjs');
 // Promise.resolve(1729).then(() => {
 //     console.log(`eid ${executionAsyncId()} tid ${triggerAsyncId()}`);
