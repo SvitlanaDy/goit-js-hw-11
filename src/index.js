@@ -8,7 +8,7 @@ import fetchData from "./scripts/fetchApi";
 
 
 const form = document.getElementById('search-form');
-const gallery= document.getElementById('gallery');
+const gallery = document.getElementById('.gallery');
 
 form.addEventListener('submit', onSubmit)
 
@@ -25,12 +25,14 @@ fetchData(value)
     return hits.reduce((markup, hits) => 
     createMarkup(hits) + markup, "");
 })
-.then(markup => {
-    console.log(markup)
-})
+.then(updateGallery)
 .catch(onError)     //!!!!!!!!!!!!!!!!!!!!!!!
 .finally(() => form.reset());
 }
+
+function updateGallery(markup) {
+    gallery.innerHTML= markup || '';
+  }
 
 function createMarkup({webformatURL,
      largeImageURL,
@@ -62,9 +64,10 @@ return `
 }
 
 
-function onError(err){
-  console.error(err);  
-}
+function onError(err) {
+    console.error(err);
+    updateGallery("<p>Pictures not found</p>");
+  }
 
 Notiflix.Notify.init({
     width: '400px',
