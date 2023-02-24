@@ -1,19 +1,82 @@
-import  Notify from 'notiflix';
-import fetchApi from './sass/js/fetchApi';
+import Notiflix from 'notiflix';
+import fetchApi from './scripts/fetchApi';
 // Описаний в документації
 import SimpleLightbox from "simplelightbox";
 // Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
-const CardContainer = document.querySelector('.js-card-container')
+import fetchData from "./scripts/fetchApi";
 
-const searchForm = document.querySelector('.js-search-form');
-const articlesContainer = document.querySelector('.js-container');
-const options = {
-    headers:{
-        Authorization: '33867943-5c281079387beab43eaa259d6',
-    },  
-};
-const API_KEY = '33867943-5c281079387beab43eaa259d6';
-// const url = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent();
-const url = 'https://pixabay.com/api/?key=33867943-5c281079387beab43eaa259d6&q=photo&image_type=photo&orientation=horizontal&safesearch=true&page1'
-fetch('https://pixabay.com/api/?key=33867943-5c281079387beab43eaa259d6&q=photo&image_type=photo&orientation=horizontal&safesearch=true')
+
+const form = document.getElementById('search-form');
+const gallery= document.getElementById('gallery');
+
+form.addEventListener('submit', onSubmit)
+
+function onSubmit(e){
+e.preventDefault();
+
+const form = e.currentTarget;
+const value = form.elements.searchQuery.value.trim();
+fetchData(value)
+.then(({ hits }) => {
+    if (hits.length === 0) throw new Error(
+        "Sorry, there are no images matching your search query. Please try again.");
+
+    return hits.reduce((markup, hits) => 
+    createMarkup(hits) + markup, "");
+})
+.then(markup => {
+    console.log(markup)
+})
+.catch(onError)     //!!!!!!!!!!!!!!!!!!!!!!!
+.finally(() => form.reset());
+}
+
+function createMarkup({webformatURL,
+     largeImageURL,
+     tags, 
+     likes, 
+     views, 
+     comments, 
+     downloads }){
+return `
+<div class = "photo-card">
+    <a href="${largeImageURL}"> 
+      <img
+      src="${webformatURL}"
+      alt="${tags}" 
+      loading="lazy"
+      />
+    </a>
+    <div class="info">
+      <p class="info-item">
+        <b>Likes</b>${likes}</p>
+      <p class="info-item">
+        <b>Views</b>${views}</p>
+      <p class="info-item">
+        <b>Comments</b>${comments}</p>
+      <p class="info-item">
+        <b>Downloads</b>${downloads}</p>
+    </div>
+  </div>`;
+}
+
+
+function onError(err){
+  console.error(err);  
+}
+
+Notiflix.Notify.init({
+    width: '400px',
+    position: 'center-center',
+    fontSize: '24px',
+    cssAnimationDuration: 300,
+    borderRadius: '10px',
+  });
+
+
+
+
+
+
+
