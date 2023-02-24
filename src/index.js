@@ -7,8 +7,8 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 import fetchData from "./scripts/fetchApi";
 
 
-const form = document.getElementById('search-form');
-const gallery = document.getElementById('.gallery');
+const form = document.querySelector('.search-form');
+const gallery = document.querySelector('.gallery');
 
 form.addEventListener('submit', onSubmit)
 
