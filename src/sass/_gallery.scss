@@ -1,5 +1,8 @@
 .container{
     background-color: rgb(41, 134, 233);
+    min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .load-container{
     padding-left: 15px;
@@ -23,3 +26,24 @@ padding-top:30px;
 .load-more{
     background-color: dodgerblue;
 }
+
+.search-form {
+    display: flex;
+    text-align: center;
+  
+    padding: 15px;
+    margin: 10px;
+    width: 100%;
+    justify-content: center;
+   
+    margin: 0 auto;
+  }
+  .gallery{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
