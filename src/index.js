@@ -1,26 +1,19 @@
-import { Notify } from 'notiflix';
-
+import  Notify from 'notiflix';
+import fetchApi from './sass/js/fetchApi';
 // Описаний в документації
 import SimpleLightbox from "simplelightbox";
 // Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
-// const axios = require('axios/dist/node/axios.cjs');
-// Promise.resolve(1729).then(() => {
-//     console.log(`eid ${executionAsyncId()} tid ${triggerAsyncId()}`);
-//   });
+const CardContainer = document.querySelector('.js-card-container')
 
-//   import { createHook, executionAsyncId, triggerAsyncId } from 'node:async_hooks';
-// createHook({ init() {} }).enable(); // forces PromiseHooks to be enabled.
-// Promise.resolve(1729).then(() => {
-//   console.log(`eid ${executionAsyncId()} tid ${triggerAsyncId()}`);
-// });
-// produces:
-// eid 7 tid 6
-
-// const fetchUsers = async () => {
-//     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-//     const users = await response.json();
-//     return users;
-//   };
-  
-//   fetchUsers().then(users => console.log(users));
+const searchForm = document.querySelector('.js-search-form');
+const articlesContainer = document.querySelector('.js-container');
+const options = {
+    headers:{
+        Authorization: '33867943-5c281079387beab43eaa259d6',
+    },  
+};
+const API_KEY = '33867943-5c281079387beab43eaa259d6';
+// const url = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent();
+const url = 'https://pixabay.com/api/?key=33867943-5c281079387beab43eaa259d6&q=photo&image_type=photo&orientation=horizontal&safesearch=true&page1'
+fetch('https://pixabay.com/api/?key=33867943-5c281079387beab43eaa259d6&q=photo&image_type=photo&orientation=horizontal&safesearch=true')
