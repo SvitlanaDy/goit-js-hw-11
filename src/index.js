@@ -24,7 +24,7 @@ form.addEventListener('submit', onSubmit)
 loadBtn.addEventListener('click', onClick)
 
 async function onSubmit(e){
-e.preventDefault(e);
+e.preventDefault();
 page = 1;
 const form = e.currentTarget;
 const value = form.elements.searchQuery.value.trim();
