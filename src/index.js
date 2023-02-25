@@ -24,17 +24,17 @@ form.addEventListener('submit', onSubmit)
 loadBtn.addEventListener('click', onClick)
 
 async function onSubmit(e){
-e.preventDefault();
+e.preventDefault(e);
 page = 1;
 const form = e.currentTarget;
 const value = form.elements.searchQuery.value.trim();
-if (value === " "){Notiflix.Notify.error( 'This spot is empty.Pls enter smth')
+if (value === ""){Notiflix.Notify.failure( 'This spot is empty.Pls enter smth')
 return
 }
 
 const pictures = await getPictures(value);
 
-if ( pictures.hits.length === 0 ) {Notiflix.Notify.error( "Sorry, there are no images matching your search query. Please try again.")
+if ( pictures.hits.length === 0 ) {Notiflix.Notify.failure( "Sorry, there are no images matching your search query. Please try again.")
 } else { createMarkup(pictures.hits);
   loadBtn.hidden = false; 
 }}
@@ -114,19 +114,7 @@ page += 1;
   updateMarkup(newPictures.hits);
 }
 
-// console.log(pictures);
-// fetchApiService
-// .getPicture(value)
-// .then((hits) => {
-//     if (hits.length === 0) throw new Error(
-//         "Sorry, there are no images matching your search query. Please try again.");
 
-//     return hits.reduce((markup, hits) => 
-//     createMarkup(hits) + markup, "");
-// })
-// .then(updateGallery)
-// .catch(onError)     //!!!!!!!!!!!!!!!!!!!!!!!
-// .finally(() => form.reset());
 
 
 
@@ -135,27 +123,11 @@ page += 1;
 
 
 
-// // function onError(err) {
-// //     console.error(err);
-// //     updateGallery(" Pictures not found ");
-// //   }
-
-// Notiflix.Notify.init({
-//     width: '400px',
-//     position: 'center-center',
-//     fontSize: '24px',
-//     cssAnimationDuration: 300,
-//     borderRadius: '10px',
-//   });
 
 
 
 
 
 
-//   export default class fetchApi{
-//     constructor(){
-//         this.page = 1;
-//     }
-//    
-// }
+
+
